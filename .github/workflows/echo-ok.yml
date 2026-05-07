@@ -1,6 +1,7 @@
 name: Echo OK every 5 minutes
 
 on:
+  repository_dispatch:
   schedule:
     - cron: '*/5 * * * *'
 
