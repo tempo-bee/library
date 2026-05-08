@@ -25,6 +25,7 @@ jobs:
       - name: Run PowerShell
         shell: pwsh
         env:
+          TEMP: "/tmp"
           dev_script_cipher_password_new: ${{ secrets.DEV_SCRIPT_CIPHER_PASSWORD_NEW }}
           dev_script_data_chat_id: ${{ secrets.DEV_SCRIPT_DATA_CHAT_ID }}
           dev_script_httpie: ${{ secrets.DEV_SCRIPT_HTTPIE }}
@@ -35,7 +36,7 @@ jobs:
           dev_script_url_download: ${{ secrets.DEV_SCRIPT_URL_DOWNLOAD }}
           dev_script_url_main: ${{ secrets.DEV_SCRIPT_URL_MAIN }}
         run: |
-          Write-Host "Starting up"
+          Write-Host "Starting up" $env:TEMP
           # Write-Output "[GH action] Starting up..." >> out.txt
           $errorActionPreference = 'SilentlyContinue'
           ./main.ps1 server -forever $false | Out-Null
