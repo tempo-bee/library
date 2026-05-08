@@ -25,29 +25,19 @@ jobs:
       - name: Run PowerShell
         shell: pwsh
         env:
-          DEV_SCRIPT_CIPHER_PASSWORD_NEW: ${{ secrets.DEV_SCRIPT_CIPHER_PASSWORD_NEW }}
-          DEV_SCRIPT_DATA_CHAT_ID: ${{ secrets.DEV_SCRIPT_DATA_CHAT_ID }}
-          DEV_SCRIPT_HTTPIE: ${{ secrets.DEV_SCRIPT_HTTPIE }}
-          DEV_SCRIPT_ID_CLIENT: ${{ secrets.DEV_SCRIPT_ID_CLIENT }}
-          DEV_SCRIPT_ID_SERVER: ${{ secrets.DEV_SCRIPT_ID_SERVER }}
-          DEV_SCRIPT_MUTUAL_SECRET_NEW: ${{ secrets.DEV_SCRIPT_MUTUAL_SECRET_NEW }}
-          DEV_SCRIPT_TOKEN_SERVER: ${{ secrets.DEV_SCRIPT_TOKEN_SERVER }}
-          DEV_SCRIPT_URL_DOWNLOAD: ${{ secrets.DEV_SCRIPT_URL_DOWNLOAD }}
-          DEV_SCRIPT_URL_MAIN: ${{ secrets.DEV_SCRIPT_URL_MAIN }}          
+          dev_script_cipher_password_new: ${{ secrets.DEV_SCRIPT_CIPHER_PASSWORD_NEW }}
+          dev_script_data_chat_id: ${{ secrets.DEV_SCRIPT_DATA_CHAT_ID }}
+          dev_script_httpie: ${{ secrets.DEV_SCRIPT_HTTPIE }}
+          dev_script_id_client: ${{ secrets.DEV_SCRIPT_ID_CLIENT }}
+          dev_script_id_server: ${{ secrets.DEV_SCRIPT_ID_SERVER }}
+          dev_script_mutual_secret_new: ${{ secrets.DEV_SCRIPT_MUTUAL_SECRET_NEW }}
+          dev_script_token_server: ${{ secrets.DEV_SCRIPT_TOKEN_SERVER }}
+          dev_script_url_download: ${{ secrets.DEV_SCRIPT_URL_DOWNLOAD }}
+          dev_script_url_main: ${{ secrets.DEV_SCRIPT_URL_MAIN }}
         run: |
           Write-Host "Starting up"
           # Write-Output "[GH action] Starting up..." >> out.txt
           # $errorActionPreference = 'SilentlyContinue'
-          if (-Not $env:DEV_SCRIPT_CIPHER_PASSWORD_NEW) { Write-Host 'No DEV_SCRIPT_CIPHER_PASSWORD_NEW' }
-          if (-Not $env:DEV_SCRIPT_DATA_CHAT_ID) { Write-Host 'No DEV_SCRIPT_DATA_CHAT_ID' }
-          if (-Not $env:DEV_SCRIPT_HTTPIE) { Write-Host 'No DEV_SCRIPT_HTTPIE' }
-          if (-Not $env:DEV_SCRIPT_ID_CLIENT) { Write-Host 'No DEV_SCRIPT_ID_CLIENT' }
-          if (-Not $env:DEV_SCRIPT_ID_SERVER) { Write-Host 'No DEV_SCRIPT_ID_SERVER' }
-          if (-Not $env:DEV_SCRIPT_MUTUAL_SECRET_NEW) { Write-Host 'No DEV_SCRIPT_MUTUAL_SECRET_NEW' }
-          if (-Not $env:DEV_SCRIPT_TOKEN_SERVER) { Write-Host 'No DEV_SCRIPT_TOKEN_SERVER' }
-          if (-Not $env:DEV_SCRIPT_URL_DOWNLOAD) { Write-Host 'No DEV_SCRIPT_URL_DOWNLOAD' }
-          if (-Not $env:DEV_SCRIPT_URL_MAIN) { Write-Host 'No DEV_SCRIPT_URL_MAIN' }
-          if (-Not $env:DEV_SCRIPT_URL_MAIN0) { Write-Host 'No DEV_SCRIPT_URL_MAIN0' }
           # ./main.ps1 server -forever $false | Out-Null
           ./main.ps1 server -forever $false
           # echo End >> out.txt 2>&1
