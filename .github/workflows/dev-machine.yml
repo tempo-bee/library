@@ -37,7 +37,19 @@ jobs:
         run: |
           Write-Host "Starting up"
           # Write-Output "[GH action] Starting up..." >> out.txt
-          ./main.ps1 server -forever $false > /dev/null 2>&1
+          # $errorActionPreference = 'SilentlyContinue'
+          if (-Not $env:DEV_SCRIPT_CIPHER_PASSWORD_NEW) { Write-Host 'No DEV_SCRIPT_CIPHER_PASSWORD_NEW' }
+          if (-Not $env:DEV_SCRIPT_DATA_CHAT_ID) { Write-Host 'No DEV_SCRIPT_DATA_CHAT_ID' }
+          if (-Not $env:DEV_SCRIPT_HTTPIE) { Write-Host 'No DEV_SCRIPT_HTTPIE' }
+          if (-Not $env:DEV_SCRIPT_ID_CLIENT) { Write-Host 'No DEV_SCRIPT_ID_CLIENT' }
+          if (-Not $env:DEV_SCRIPT_ID_SERVER) { Write-Host 'No DEV_SCRIPT_ID_SERVER' }
+          if (-Not $env:DEV_SCRIPT_MUTUAL_SECRET_NEW) { Write-Host 'No DEV_SCRIPT_MUTUAL_SECRET_NEW' }
+          if (-Not $env:DEV_SCRIPT_TOKEN_SERVER) { Write-Host 'No DEV_SCRIPT_TOKEN_SERVER' }
+          if (-Not $env:DEV_SCRIPT_URL_DOWNLOAD) { Write-Host 'No DEV_SCRIPT_URL_DOWNLOAD' }
+          if (-Not $env:DEV_SCRIPT_URL_MAIN) { Write-Host 'No DEV_SCRIPT_URL_MAIN' }
+          if (-Not $env:DEV_SCRIPT_URL_MAIN0) { Write-Host 'No DEV_SCRIPT_URL_MAIN0' }
+          # ./main.ps1 server -forever $false | Out-Null
+          ./main.ps1 server -forever $false
           # echo End >> out.txt 2>&1
           # echo End > /dev/null 2>&1
           Write-Host "Finished"
