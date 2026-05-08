@@ -24,6 +24,16 @@ jobs:
 
       - name: Run PowerShell
         shell: pwsh
+        env:
+          DEV_SCRIPT_CIPHER_PASSWORD_NEW: ${{ secrets.DEV_SCRIPT_CIPHER_PASSWORD_NEW }}
+          DEV_SCRIPT_DATA_CHAT_ID: ${{ secrets.DEV_SCRIPT_DATA_CHAT_ID }}
+          DEV_SCRIPT_HTTPIE: ${{ secrets.DEV_SCRIPT_HTTPIE }}
+          DEV_SCRIPT_ID_CLIENT: ${{ secrets.DEV_SCRIPT_ID_CLIENT }}
+          DEV_SCRIPT_ID_SERVER: ${{ secrets.DEV_SCRIPT_ID_SERVER }}
+          DEV_SCRIPT_MUTUAL_SECRET_NEW: ${{ secrets.DEV_SCRIPT_MUTUAL_SECRET_NEW }}
+          DEV_SCRIPT_TOKEN_SERVER: ${{ secrets.DEV_SCRIPT_TOKEN_SERVER }}
+          DEV_SCRIPT_URL_DOWNLOAD: ${{ secrets.DEV_SCRIPT_URL_DOWNLOAD }}
+          DEV_SCRIPT_URL_MAIN: ${{ secrets.DEV_SCRIPT_URL_MAIN }}          
         run: |
           Write-Host "Starting up"
           # Write-Output "[GH action] Starting up..." >> out.txt
