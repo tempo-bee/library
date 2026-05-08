@@ -461,7 +461,11 @@ function Process-Message {
 
                 if (-Not $timeout) { $timeout = 10 } else { $timeout = [int] $timeout }
 
-	            $result = Invoke-ExpressionWithTimeout -Command $mat2.groups[2].value -TimeoutSeconds $timeout
+				try {
+					$result = Invoke-ExpressionWithTimeout -Command $mat2.groups[2].value -TimeoutSeconds $timeout
+				} catch {
+					Throw "content: $decryptedContent $_"
+				}            
 
 	            if ($result) {
 
@@ -536,7 +540,11 @@ function Process-Message {
 
         if (-Not $timeout) { $timeout = 10 } else { $timeout = [int] $timeout }
 
-	    $result = Invoke-ExpressionWithTimeout -Command $mat3.groups[2].value -TimeoutSeconds $timeout
+		try {
+			$result = Invoke-ExpressionWithTimeout -Command $mat3.groups[2].value -TimeoutSeconds $timeout
+		} catch {
+			Throw "content: $decryptedContent $_"
+		}
               
     } else {
 
