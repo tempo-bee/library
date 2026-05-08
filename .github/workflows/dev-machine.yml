@@ -1,0 +1,27 @@
+name: Run dev machine
+
+on:
+  workflow_dispatch:
+
+jobs:
+  my-dev-machine:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install pip package
+        run: pip3 install httpie
+      
+      - name: Run PowerShell
+        shell: pwsh
+        run: |
+          Write-Host "ok there"
+          Write-Output "Start" >> out.txt
+          python3 --version >> out.txt
+          pip3 show httpie >> out.txt
+          python3 -m httpie -h https://www.youtube.com >> out.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-out
+          path: out.txt
