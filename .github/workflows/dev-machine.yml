@@ -32,8 +32,8 @@ jobs:
           # echo End > /dev/null 2>&1
           Write-Host "Finished"
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: my-out
-          path: out.txt
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v7
+      #   with:
+      #     name: my-out
+      #     path: out.txt
