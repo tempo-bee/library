@@ -365,7 +365,7 @@ function Send-Document {
 
     if ($ReplyTo) { $addr += "?reply_to_message_id=$ReplyTo" }
 
-    $cmnd = "$httpie -h --timeout 5 --multipart POST '$addr' 'document@$filePath' 'caption=$caption' 'chat_id=$chatId'"
+    $cmnd = "$httpie --ignore-stdin -h --timeout 5 --multipart POST '$addr' 'document@$filePath' 'caption=$caption' 'chat_id=$chatId'"
 
     $result = Invoke-Expression $cmnd
 
