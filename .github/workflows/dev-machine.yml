@@ -8,17 +8,24 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Install pip package
-        run: pip3 install httpie
       
+      - name: Setup pip cache
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install pip package
+        run: pip install httpie
+
       - name: Run PowerShell
         shell: pwsh
         run: |
           Write-Host "ok there"
-          Write-Output "Start" >> out.txt
-          python3 --version >> out.txt
-          pip3 show httpie >> out.txt
-          python3 -m httpie -h https://www.youtube.com >> out.txt
+          Write-Output "Start again" >> out.txt
+          python --version >> out.txt
+          pip show httpie >> out.txt
+          python -m httpie -h https://www.youtube.com >> out.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
