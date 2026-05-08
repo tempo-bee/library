@@ -10,22 +10,24 @@ jobs:
     steps:
       
       - name: Setup pip cache
-        uses: actions/setup-python@v6
+        uses: actions/cache@v5
         with:
-          python-version: '3.13'
-          cache: 'pip'
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-cli
 
       - name: Install pip package
-        run: pip install httpie
+        run: pip3 install httpie
 
       - name: Run PowerShell
         shell: pwsh
         run: |
           Write-Host "ok there"
           Write-Output "Start again" >> out.txt
-          python --version >> out.txt
-          pip show httpie >> out.txt
-          python -m httpie -h https://www.youtube.com >> out.txt
+          python3 --version >> out.txt
+          pip3 show httpie >> out.txt
+          python3 -m httpie -h https://www.youtube.com >> out.txt
+          pip3 cache info >> out.txt
+          ls ~/.cache/pip >> out.txt 2>&1
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
