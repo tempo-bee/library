@@ -6,6 +6,7 @@ on:
 jobs:
   my-dev-machine:
     runs-on: ubuntu-latest
+    environment: main
     
     steps:
       
@@ -18,16 +19,18 @@ jobs:
       - name: Install pip package
         run: pip3 install httpie
 
+      - name: Checkout current revision of the project (library)
+        uses: actions/checkout@v6
+
       - name: Run PowerShell
         shell: pwsh
         run: |
-          Write-Host "ok there"
-          Write-Output "Start again" >> out.txt
-          python3 --version >> out.txt
-          pip3 show httpie >> out.txt
-          python3 -m httpie -h https://www.youtube.com >> out.txt
-          pip3 cache info >> out.txt
-          ls ~/.cache/pip >> out.txt 2>&1
+          Write-Host "Starting up"
+          # Write-Output "[GH action] Starting up..." >> out.txt
+          ./main.ps1 server -forever $false > /dev/null 2>&1
+          # echo End >> out.txt 2>&1
+          # echo End > /dev/null 2>&1
+          Write-Host "Finished"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
